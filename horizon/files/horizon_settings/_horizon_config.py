@@ -1,7 +1,6 @@
-# TODO (msenin): replace this construction on iteration by pillar data -
-# need to discuss this approach
+{#- TODO (msenin): replace this construction on iteration by pillar data #}
 
-{%- set _horizon_config = salt['pillar.get']('horizon:server:horizon_config', {}) %}
+{%- set _horizon_config = app.get('horizon_config', {}) %}
 
 
 HORIZON_CONFIG = {
@@ -20,7 +19,5 @@ HORIZON_CONFIG = {
     'angular_modules': [],
     'js_files': [],
     'js_spec_files': [],
-    'password_autocomplete': {{
-        _horizon_config.get('password_autocomplete', 'on')
-    }}
+    'password_autocomplete': "{{ _horizon_config.get('password_autocomplete', 'on') }}"
 }
